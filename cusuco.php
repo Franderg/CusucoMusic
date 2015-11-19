@@ -44,13 +44,6 @@
 
 
 
-
-
-
-
-
-
-
 <script>
 
 function carga_contenido(parametro,user){
@@ -151,7 +144,7 @@ function carga_contenido(parametro,user){
     <h3>Cusuco</h3>
   </div>
   <div id="encabezado_derecha">
-    <a href ="#">salir</a>
+      <a href ="index.php">salir</a>
   </div>
 </header>
 			<nav id="menu">
