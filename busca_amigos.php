@@ -21,5 +21,14 @@ if ($_POST['boton'] == "Busca") {
         $user = $row['Username'];
 
         echo '<h2> Perfil de ' . $user . '</h2>';
+
+        $tbl_name2 = 'Amigo';
+        conecta_DB();
+
+        $id = $_GET['id'];
+
+        $sql = "SELECT `Usuario`.`Id_Usuario`, `Usuario`.`Username` FROM $tbl_name2 JOIN `Usuario` ON `Amigo`.`Id_Amigo`=`Usuario`.`Id_Usuario` WHERE `Amigo`.`Id_Usuario`=$id";
+
+        $result = mysql_query($sql);
     }
 }
