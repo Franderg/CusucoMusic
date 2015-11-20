@@ -1,7 +1,7 @@
 <!DOCTYPE html>
 
 <html class = "ng-csp" data-placeholder-focus = "false">
-    <head data-requesttoken = "f0f9b0f8d111473a000a">
+    
         <title>
             odyssey
         </title>
@@ -15,7 +15,7 @@
 
         <link rel = "stylesheet" href = "/owncloud/core/css/styles.css?v=c738ceb8e9cad987cfe7d26b33de9901" type = "text/css" media = "screen" />
 
-    </head>
+    
 </html>
 
 <?php
@@ -25,7 +25,7 @@ ob_start();
 include './conecta_DB.php';
 
 $tbl_name = 'Usuario';
-conecta_DB($tbl_name);
+conecta_DB();
 
 
 // username and password sent from form

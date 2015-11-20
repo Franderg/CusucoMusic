@@ -1,20 +1,20 @@
 
 
-
-
 <?php
 
 require ('./conecta_DB.php');
 conecta_DB();
 
-$queryResult = mysql_query('SELECT Nombre,Ruta FROM Metadata') or die(mysql_error());
+$query = 'SELECT Metadata.Nombre, Cancion.Ruta FROM Metadata 
+JOIN Cancion ON Cancion.Id_Version = Metadata.Id_Version
+JOIN Biblioteca ON Biblioteca.Id_Cancion = Cancion.Id_Cancion 
+WHERE Biblioteca.Id_Usuario='.$user_id;
+
+$queryResult = mysql_query($query) or die(mysql_error());
 
 while ($row = mysql_fetch_array($queryResult)) {
-  $var =$var.'<li><a href="#" data-src="'.$row[Ruta].'">'.$row[Nombre].'</a></li>'."\n";
+    $var = $var . '<li><a href="#" data-src="' . $row[Ruta] . '">' . $row[Nombre] . '</a></li>' . "\n";
 }
 
-
-
 return $var;
-
 ?>

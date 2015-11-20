@@ -13,10 +13,9 @@
     conecta_DB();
 
     $id = $_GET['id'];
-echo $id.", estos son tus amigos";
+
     $sql = "SELECT `Usuario`.`Id_Usuario`, `Usuario`.`Username` FROM $tbl_name JOIN `Usuario` ON `Amigo`.`Id_Amigo`=`Usuario`.`Id_Usuario` WHERE `Amigo`.`Id_Usuario`=$id";
 
-  //  $sql = "SELECT * FROM $tbl_name WHERE Id_Usuario= $id";
     $result = mysql_query($sql);
 
     if ($row = mysql_fetch_array($result)) {
@@ -27,8 +26,7 @@ echo $id.", estos son tus amigos";
         } while ($row = mysql_fetch_array($result));
         echo "<ul> \n";
     } else {
-        echo $id;
-        echo "¡ No se ha encontrado ningún registro !";
+        echo "¡ No se ha encontrado ningún Amigo! Que esperas para buscar amigos.";
     }
 ?>
 
