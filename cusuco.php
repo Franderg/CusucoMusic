@@ -118,45 +118,11 @@
 
 </head>
 
-
 <body>
-
-    <header>
-        <div id="buscador">
-            <form>
-                <input id="textbox-busqueda" placeholder="buscar" type="search">
-            </form>
-        </div>
-        <div id="encabezado_centro">
-            <h3>Cusuco</h3>
-        </div>
-        <div id="encabezado_derecha">
-            <a href ="index.php">salir</a>
-        </div>
-    </header>
-    <nav id="menu">
-        <ul class="icon">
-            <?php
-            $userId = $_GET['id'];
-            echo '<li class="perfil" onclick="carga_contenido(\'perfil\',' . $userId . ')"><a href ="#">Perfil</a></li>';
-            echo '<li class="biblioteca" onclick="carga_contenido(\'biblioteca\',' . $userId . ')"><a href ="#">Biblioteca</a></li>';
-            echo '<li class="compas" onclick="carga_contenido(\'compas\',' . $userId . ')"><a href ="#">Compas</a></li>';
-            echo '<li class="sincronizar" onclick="carga_contenido(\'sincronizar\',' . $userId . ')"><a href ="#">Sincronizar</a></li>';
-            echo '<li class="ayuda" onclick="carga_contenido(\'ayuda\',' . $userId . ')"><a href ="#">Ayuda</a></li>';
-            ?>
-        </ul>
-    </nav>
-</body>>
-
-<body>
-
-
 
     <?php
     $userId = $_GET['id'];
     ?>
-
-
 
     <header>
         <div id="buscador">
