@@ -16,9 +16,11 @@
     $username = $row['Username'];
 
     echo 'Bienvenido ' . $username;
+    
+    $url = "busca_amigos.php?id=" . $id;    
     ?>
 
-    <form method="post" name="login" action="busca_amigos.php" >
+    <form method="post" name="login" action=<?php echo $url ?> >
         <p class="groupbottom">
             <input id="textbox-busqueda" name="textbox-busqueda" style="width:250px;height:50px" placeholder="busca usuarios" type="text">        
         <input type="submit" style="width:50px;height:50px" value="Busca" name="boton"/>
