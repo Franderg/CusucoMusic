@@ -7,7 +7,7 @@
     include './conecta_DB.php';
 
     $tbl_name = 'Usuario';
-    conecta_DB($tbl_name);
+    conecta_DB();
 
     $id = $_GET['id'];
     $sql = "SELECT * FROM $tbl_name WHERE Id_Usuario='$id' ";

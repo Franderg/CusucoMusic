@@ -38,6 +38,7 @@
             #shortcuts { display: none; }
         }
     </style>
+
     <script src="./audiojs/audio.min.js"></script>
     <!-- <link rel="stylesheet" href="./includes/index.css" media="screen"> -->
     <script src="js/jquery.js"></script>
@@ -67,51 +68,90 @@
 
         $(function () {
 
-            // Setup the player to autoplay the next track
-            var a = audiojs.createAll({
-                trackEnded: function () {
-                    var next = $('ol li.playing').next();
-                    if (!next.length)
-                        next = $('ol li').first();
-                    next.addClass('playing').siblings().removeClass('playing');
-                    audio.load($('a', next).attr('data-src'));
-                    audio.play();
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+        trackEnded: function () {
+        var next = $('ol li.playing').next();
+                if (!next.length)
+                next = $('ol li').first();
+                next.addClass('playing').siblings().removeClass('playing');
+                audio.load($('a', next).attr('data-src'));
+                audio.play();
+        }
+        });
+                // Load in the first track
+                var audio = a[0];
+                < script src = "./audiojs/audio.min.js" ></script>
+    <!-- <link rel="stylesheet" href="./includes/index.css" media="screen"> -->
+    <script src="js/jquery.js"></script>
+
+
+
+    <script>
+
+                function carga_contenido(parametro, user){
+                if (parametro == 'perfil'){
+                var url = '<object type="text/html" data="perfil.php?id=' + user + '"></object>';
+                        document.getElementById("contenido").innerHTML = url;
+                } else if (parametro == 'compas'){
+                var url = '<object type="text/html" data="compas.php?id=' + user + '"></object>';
+                        document.getElementById("contenido").innerHTML = url;
+                } else if (parametro == 'biblioteca'){
+                var url = '<object type="text/html" data="biblioteca.php?id=' + user + '"></object>';
+                        document.getElementById("contenido").innerHTML = url;
+                } else if (parametro == 'sincronizar'){
+                var url = '<object type="text/html" data="sincronizar.php?id=' + user + '"></object>';
+                        document.getElementById("contenido").innerHTML = url;
+                } else if (parametro == 'ayuda'){
+                var url = '<object type="text/html" data="ayuda.php?id=' + user + '"></object>';
+                        document.getElementById("contenido").innerHTML = url;
                 }
-            });
+                }
 
-            // Load in the first track
-            var audio = a[0];
-            first = $('ol a').attr('data-src');
-            $('ol li').first().addClass('playing');
-            audio.load(first);
+        $(function() {
 
-            // Load in a track on click
-            $('ol li').click(function (e) {
-                e.preventDefault();
+        // Setup the player to autoplay the next track
+        var a = audiojs.createAll({
+        trackEnded: function() {
+        var next = $('ol li.playing').next();
+                if (!next.length) next = $('ol li').first();
+                next.addClass('playing').siblings().removeClass('playing');
+                audio.load($('a', next).attr('data-src'));
+                audio.play();
+        }
+        });
+                // Load in the first track
+                var audio = a[0];
+                first = $('ol a').attr('data-src');
+                $('ol li').first().addClass('playing');
+                audio.load(first);
+                // Load in a track on click
+                $('ol li').click(function (e) {
+        e.preventDefault();
                 $(this).addClass('playing').siblings().removeClass('playing');
                 audio.load($('a', this).attr('data-src'));
                 audio.play();
-            });
-            // Keyboard shortcuts
-            $(document).keydown(function (e) {
-                var unicode = e.charCode ? e.charCode : e.keyCode;
+        });
+                // Keyboard shortcuts
+                $(document).keydown(function (e) {
+        var unicode = e.charCode ? e.charCode : e.keyCode;
                 // right arrow
                 if (unicode == 39) {
-                    var next = $('li.playing').next();
-                    if (!next.length)
-                        next = $('ol li').first();
-                    next.click();
-                    // back arrow
-                } else if (unicode == 37) {
-                    var prev = $('li.playing').prev();
-                    if (!prev.length)
-                        prev = $('ol li').last();
-                    prev.click();
-                    // spacebar
-                } else if (unicode == 32) {
-                    audio.playPause();
-                }
-            })
+        var next = $('li.playing').next();
+                if (!next.length)
+                next = $('ol li').first();
+                next.click();
+                // back arrow
+        } else if (unicode == 37) {
+        var prev = $('li.playing').prev();
+                if (!prev.length)
+                prev = $('ol li').last();
+                prev.click();
+                // spacebar
+        } else if (unicode == 32) {
+        audio.playPause();
+        }
+        })
         });
     </script>
 
@@ -120,6 +160,7 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
 </head>
+
 
 <body>
 
@@ -148,6 +189,43 @@
             ?>
         </ul>
     </nav>
+</body>>
+
+<body>
+
+
+
+    <?php
+    $userId = $_GET['id'];
+    ?>
+
+
+
+    <header>
+        <div id="buscador">
+            <form>
+                <input id="textbox-busqueda" placeholder="buscar" type="search">
+            </form>
+        </div>
+        <div id="encabezado_centro">
+            <h3>Cusuco</h3>
+        </div>
+        <div id="encabezado_derecha">
+            <a href ="index.php">salir</a>
+        </div>
+    </header>
+    <nav id="menu">
+        <ul class="icon">
+            <?php
+            echo '<li class="perfil" onclick="carga_contenido(\'perfil\',' . $userId . ')"><a href ="#">Perfil</a></li>';
+            echo '<li class="biblioteca" onclick="carga_contenido(\'biblioteca\',' . $userId . ')"><a href ="#">Biblioteca</a></li>';
+            echo '<li class="compas" onclick="carga_contenido(\'compas\',' . $userId . ')"><a href ="#">Compas</a></li>';
+            echo '<li class="sincronizar" onclick="carga_contenido(\'sincronizar\',' . $userId . ')"><a href ="#">Sincronizar</a></li>';
+            echo '<li class="ayuda" onclick="carga_contenido(\'ayuda\',' . $userId . ')"><a href ="#">Ayuda</a></li>';
+            ?>
+        </ul>
+    </nav>
+
 
     <div id="agrupar">
 
