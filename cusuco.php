@@ -171,10 +171,23 @@
 
     </div>
 
-    <footer id="pie">
-        <audio preload></audio>
-    </footer>
 
+    <footer id="pie">
+        <div id="encabezado_derecha">
+            <?php
+            echo '<a href ="#">like</a>';
+            ?>
+        </div>
+        <div>
+            <audio preload></audio>
+        </div>
+        <div id="encabezado_derecha">
+            <?php
+            echo '<a href ="#">dislike</a>';
+            ?>
+
+        </div>                   
+    </footer>
 
 </body>
 

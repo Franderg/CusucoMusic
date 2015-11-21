@@ -8,7 +8,7 @@
         require ('./conecta_DB.php');
         conecta_DB();
 
-        $sql = 'SELECT m.Nombre,c.Ruta FROM Metadata m '
+        $sql = 'SELECT m.Npombre,c.Ruta FROM Metadata m '
                 . 'JOIN Cancion c ON c.Id_Version=m.Id_Version '
                 . 'JOIN Biblioteca b ON c.Id_Cancion=b.Id_Cancion '
                 . 'WHERE b.Id_Usuario='.$id;
