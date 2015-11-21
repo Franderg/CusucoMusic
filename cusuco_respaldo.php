@@ -38,13 +38,13 @@
             #shortcuts { display: none; }
         }
     </style>
+    <script src="./audiojs/audio.min.js"></script>
+    <!-- <link rel="stylesheet" href="./includes/index.css" media="screen"> -->
+    <script src="js/jquery.js"></script>
 
-    <?php
-    $userId = $_GET['id'];
-    ?>
 
+    <script>
 
-<script>
         function carga_contenido(parametro, user) {
             if (parametro == 'perfil') {
                 var url = '<object type="text/html" data="perfil.php?id=' + user + '"></object>';
@@ -56,21 +56,14 @@
                 var url = '<object type="text/html" data="biblioteca.php?id=' + user + '"></object>';
                 document.getElementById("contenido").innerHTML = url;
             } else if (parametro == 'playlist') {
-                var url = '<object type="text/html" data="playlist.php?id=' + user + '"></object>';
-                document.getElementById("lista").innerHTML = url;
-            }else if (parametro == 'playlist_') {
-                var url = '<object type="text/html" data="playlist_.php?id=' + user + '"></object>';
+                var url = '<object type="text/html" data="sincronizar.php?id=' + user + '"></object>';
                 document.getElementById("contenido").innerHTML = url;
             } else if (parametro == 'ayuda') {
                 var url = '<object type="text/html" data="ayuda.php?id=' + user + '"></object>';
                 document.getElementById("contenido").innerHTML = url;
             }
         }
-</script>
-<script src="./audiojs/audio.min.js"></script>
-<!-- <link rel="stylesheet" href="./includes/index.css" media="screen"> -->
-<script src="js/jquery.js"></script>
-<script>
+
         $(function () {
 
             // Setup the player to autoplay the next track
@@ -117,7 +110,6 @@
                 }
             })
         });
-
     </script>
 
 
@@ -128,7 +120,9 @@
 
 <body>
 
-
+    <?php
+    $userId = $_GET['id'];
+    ?>
 
     <header>
         <div id="buscador">
@@ -149,7 +143,6 @@
             echo '<li class="perfil" onclick="carga_contenido(\'perfil\',' . $userId . ')"><a href ="#">Perfil</a></li>';
             echo '<li class="biblioteca" onclick="carga_contenido(\'biblioteca\',' . $userId . ')"><a href ="#">Biblioteca</a></li>';
             echo '<li class="compas" onclick="carga_contenido(\'compas\',' . $userId . ')"><a href ="#">Compas</a></li>';
-            echo '<li class="sincronizar" onclick="carga_contenido(\'playlist_\',' . $userId . ')"><a href ="#">Mostrar Playlist</a></li>';
             echo '<li class="sincronizar" onclick="carga_contenido(\'playlist\',' . $userId . ')"><a href ="#">Cargar Playlist</a></li>';
             echo '<li class="ayuda" onclick="carga_contenido(\'ayuda\',' . $userId . ')"><a href ="#">Ayuda</a></li>';
             ?>
@@ -162,15 +155,25 @@
         <div id="contenido">
         </div>
 
-        <div id="lista">
+        <div id="playlist">
+            <div id="wrapper">
+
+                <ol>
+
+                    <?php
+                    $user_id = $_GET['id'];
+                    $lista = include 'completador_de_lista_de_reproduccion_prueba.php';
+                    echo $lista;
+                    ?>
+                </ol>
+
+            </div>
         </div>
-
-
 
     </div>
 
     <footer id="pie">
-
+        <audio preload></audio>
     </footer>
 
 

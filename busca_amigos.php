@@ -18,7 +18,7 @@
         $result = mysql_query($sql);
         $row = mysql_fetch_array($result);
         if ($row == '') {
-            echo ' <h2> No se encuentra al usuario ' . $username . ' , puedes registarlo y disfrutar de la musica! </h2>';
+            echo ' <h2> No se encuentra al usuario ' . $username . ' , puedes registarlo y disfrutar de la musica! </h2>'.'\n';
         } else {
             $user = $row['Username'];
             $idBuscado = $row['Id_Usuario'];
@@ -40,16 +40,16 @@
                 }
             }
             if ($find == "show") {
-                echo 'no son amigos, que esperas para agregarlo!';
+                echo 'no son amigos, que esperas para agregarlo!'."\n";
             }
         }
     }
-        
-    $url = "agregaAmigo.php?idUsuario=" . $id. '&idAmigo=' .$idBuscado;    
+
+    $url = "agregaAmigo.php?idUsuario=" . $id. '&idAmigo=' .$idBuscado;
     ?>
 
     <form method="post" name="agrega" <?php echo $find ?> action=<?php echo $url ?> >
-        <p class="groupbottom">            
+        <p class="groupbottom">
             <input type="submit" style="width:300px;height:50px" value="Agregar a mis compas" name="boton"/>
         </p>
     </form>

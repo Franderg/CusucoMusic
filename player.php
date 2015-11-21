@@ -58,9 +58,8 @@
             } else if (parametro == 'playlist') {
                 var url = '<object type="text/html" data="playlist.php?id=' + user + '"></object>';
                 document.getElementById("lista").innerHTML = url;
-            }else if (parametro == 'playlist_') {
-                var url = '<object type="text/html" data="playlist_.php?id=' + user + '"></object>';
-                document.getElementById("contenido").innerHTML = url;
+                var url2 = '<object type="text/html" data="player.php"></object>';
+                document.getElementById("pie").innerHTML = url2;
             } else if (parametro == 'ayuda') {
                 var url = '<object type="text/html" data="ayuda.php?id=' + user + '"></object>';
                 document.getElementById("contenido").innerHTML = url;
@@ -129,51 +128,7 @@
 <body>
 
 
-
-    <header>
-        <div id="buscador">
-            <form>
-                <input id="textbox-busqueda" placeholder="buscar" type="search">
-            </form>
-        </div>
-        <div id="encabezado_centro">
-            <h3>Cusuco</h3>
-        </div>
-        <div id="encabezado_derecha">
-            <a href ="index.php">salir</a>
-        </div>
-    </header>
-    <nav id="menu">
-        <ul class="icon">
-            <?php
-            echo '<li class="perfil" onclick="carga_contenido(\'perfil\',' . $userId . ')"><a href ="#">Perfil</a></li>';
-            echo '<li class="biblioteca" onclick="carga_contenido(\'biblioteca\',' . $userId . ')"><a href ="#">Biblioteca</a></li>';
-            echo '<li class="compas" onclick="carga_contenido(\'compas\',' . $userId . ')"><a href ="#">Compas</a></li>';
-            echo '<li class="sincronizar" onclick="carga_contenido(\'playlist_\',' . $userId . ')"><a href ="#">Mostrar Playlist</a></li>';
-            echo '<li class="sincronizar" onclick="carga_contenido(\'playlist\',' . $userId . ')"><a href ="#">Cargar Playlist</a></li>';
-            echo '<li class="ayuda" onclick="carga_contenido(\'ayuda\',' . $userId . ')"><a href ="#">Ayuda</a></li>';
-            ?>
-        </ul>
-    </nav>
-
-
-    <div id="agrupar">
-
-        <div id="contenido">
-        </div>
-
-        <div id="lista">
-        </div>
-
-
-
-    </div>
-
-    <footer id="pie">
-
-    </footer>
-
-
+<?php
+echo "<audio preload></audio>"
+?>
 </body>
-
-</html>

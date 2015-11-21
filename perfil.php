@@ -18,5 +18,4 @@
     echo 'Bienvenido ' . $username;
 
     ?>
-
 </body>

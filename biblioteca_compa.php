@@ -13,7 +13,7 @@
                 . 'JOIN Cancion c ON c.Id_Version=m.Id_Version '
                 . 'JOIN Biblioteca b ON c.Id_Cancion=b.Id_Cancion '
                 . 'JOIN Artista a ON m.Id_Artista=a.Id_Artista '
-                . 'WHERE b.Id_Usuario='.$id;
+                . 'WHERE b.Id_Usuario='.$id_amigo;
 
         $queryResult = mysql_query($sql) or die(mysql_error());
         while ($row = mysql_fetch_array($queryResult)) {

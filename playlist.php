@@ -1,5 +1,3 @@
-<!DOCTYPE html>
-<html>
 <head>
     <link rel="stylesheet" type="text/css" href="css/estilo.css" media="screen" />
     <meta charset="utf-8">
@@ -16,7 +14,7 @@
         h1 { color: #444; font-size: 1.2em; padding: 14px 2px 12px; margin: 0px; }
         h1 em { font-style: normal; color: #999; }
         a { color: #888; text-decoration: none; }
-        #wrapper { width: 400px; margin: 40px auto; }
+        #wrapper { width: 350px;height: 80%; margin: 40px auto; }
 
         ol { padding: 0px; margin: 0px; list-style: decimal-leading-zero inside; color: #ccc; width: 460px; border-top: 1px solid #ccc; font-size: 0.9em; }
         ol li { position: relative; margin: 0px; padding: 9px 2px 10px; border-bottom: 1px solid #ccc; cursor: pointer; }
@@ -38,13 +36,13 @@
             #shortcuts { display: none; }
         }
     </style>
+    <script src="./audiojs/audio.min.js"></script>
+    <!-- <link rel="stylesheet" href="./includes/index.css" media="screen"> -->
+    <script src="js/jquery.js"></script>
 
-    <?php
-    $userId = $_GET['id'];
-    ?>
 
+    <script>
 
-<script>
         function carga_contenido(parametro, user) {
             if (parametro == 'perfil') {
                 var url = '<object type="text/html" data="perfil.php?id=' + user + '"></object>';
@@ -57,20 +55,13 @@
                 document.getElementById("contenido").innerHTML = url;
             } else if (parametro == 'playlist') {
                 var url = '<object type="text/html" data="playlist.php?id=' + user + '"></object>';
-                document.getElementById("lista").innerHTML = url;
-            }else if (parametro == 'playlist_') {
-                var url = '<object type="text/html" data="playlist_.php?id=' + user + '"></object>';
                 document.getElementById("contenido").innerHTML = url;
             } else if (parametro == 'ayuda') {
                 var url = '<object type="text/html" data="ayuda.php?id=' + user + '"></object>';
                 document.getElementById("contenido").innerHTML = url;
             }
         }
-</script>
-<script src="./audiojs/audio.min.js"></script>
-<!-- <link rel="stylesheet" href="./includes/index.css" media="screen"> -->
-<script src="js/jquery.js"></script>
-<script>
+
         $(function () {
 
             // Setup the player to autoplay the next track
@@ -117,7 +108,6 @@
                 }
             })
         });
-
     </script>
 
 
@@ -125,55 +115,36 @@
     <link href="css/bootstrap.min.css" rel="stylesheet">
 
 </head>
-
 <body>
 
 
 
-    <header>
-        <div id="buscador">
-            <form>
-                <input id="textbox-busqueda" placeholder="buscar" type="search">
-            </form>
-        </div>
-        <div id="encabezado_centro">
-            <h3>Cusuco</h3>
-        </div>
-        <div id="encabezado_derecha">
-            <a href ="index.php">salir</a>
-        </div>
-    </header>
-    <nav id="menu">
-        <ul class="icon">
-            <?php
-            echo '<li class="perfil" onclick="carga_contenido(\'perfil\',' . $userId . ')"><a href ="#">Perfil</a></li>';
-            echo '<li class="biblioteca" onclick="carga_contenido(\'biblioteca\',' . $userId . ')"><a href ="#">Biblioteca</a></li>';
-            echo '<li class="compas" onclick="carga_contenido(\'compas\',' . $userId . ')"><a href ="#">Compas</a></li>';
-            echo '<li class="sincronizar" onclick="carga_contenido(\'playlist_\',' . $userId . ')"><a href ="#">Mostrar Playlist</a></li>';
-            echo '<li class="sincronizar" onclick="carga_contenido(\'playlist\',' . $userId . ')"><a href ="#">Cargar Playlist</a></li>';
-            echo '<li class="ayuda" onclick="carga_contenido(\'ayuda\',' . $userId . ')"><a href ="#">Ayuda</a></li>';
-            ?>
-        </ul>
-    </nav>
 
+<div id="playlist">
+<div id="wrapper">
+<ol>
+  <?php
 
-    <div id="agrupar">
+  require ('./conecta_DB.php');
+  conecta_DB();
+  $id = $_GET['id'];
+  $query = 'SELECT Metadata.Nombre, Cancion.Ruta FROM Metadata
+  JOIN Cancion ON Cancion.Id_Version = Metadata.Id_Version
+  JOIN Playlist ON Playlist.Id_Cancion = Cancion.Id_Cancion
+  WHERE Playlist.Id_Usuario='.$id;
 
-        <div id="contenido">
-        </div>
+  $queryResult = mysql_query($query) or die(mysql_error());
 
-        <div id="lista">
-        </div>
+  while ($row = mysql_fetch_array($queryResult)) {
+      $var = $var . '<li><a href="#" data-src="' . $row[Ruta] . '">' . $row[Nombre] . '</a></li>' . "\n";
+  }
+  echo $var;
 
-
-
-    </div>
-
-    <footer id="pie">
-
-    </footer>
+  ?>
+</ol>
+</div>
+</div>
+<audio preload></audio>
 
 
 </body>
-
-</html>
